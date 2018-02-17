@@ -11,12 +11,12 @@ const state = {
   todos: [
     {
       id: 1,
-      title: 'Write passing test',
+      title: 'Write failing test',
       completed: true
     },
     {
       id: 2,
-      title: 'Test it using Cypress',
+      title: 'Write code to pass it',
       completed: false
     }
   ]

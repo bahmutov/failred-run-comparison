@@ -1,16 +1,17 @@
 /// <reference types="Cypress" />
 const addTodo = (text) => {
-  cy.get('#new-todo').type(`${text}{enter}`)
+  cy.get('.new-todo').type(`${text}{enter}`)
 }
-const deleteTodo = (text) => {
-  cy.contains('li', text).find('.destroy').click({force: true})
-}
-it('stores todos in localStorage', () => {
-  cy.visit('http://todomvc.com/examples/mithril/#/')
+// extra cy.wait commands for demo purposes
+it('adds todos', () => {
+  cy.visit('http://localhost:1234')
+  cy.wait(500, {log: false})
   addTodo('first todo')
+  cy.wait(500, {log: false})
   addTodo('second todo')
-  cy.get('#todo-list li').should('have.length', 2)
-  deleteTodo('first todo')
-  cy.reload()
-  cy.get('#todo-list li').should('have.length', 2)
+  cy.wait(500, {log: false})
+  cy.get('.todo-list li').should('have.length', 4)
+})
+afterEach(() => {
+  cy.wait(2000, {log: false}) // for demo purposes
 })
